@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
 import { Fade } from 'react-awesome-reveal';
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { Parallax } from 'react-scroll-parallax';
@@ -45,86 +45,40 @@ function Projects() {
                 tech={["React.js", "Tailwind CSS", "Firebase"]}
                 src="/projects/swaraj-quest.png"
                 description={`Developed a quiz app focused on Indian freedom fighters. Features include multiple quizzes, interactive elements, and a reward system with coins. Leveraged React.js and Firebase for a responsive and dynamic user experience.`}
-                link="https://www.amazon.com/dp/B0DDQJZ1JF/ref=apps_sf_sta"
-                github="https://www.amazon.com/dp/B0DDQJZ1JF/ref=apps_sf_sta"
-            />
-            <ProjectsCard
+                link="https://github.com/shkshreyas/Swaraj_Quest"
+                github="https://github.com/shkshreyas/Swaraj_Quest"
                 reverse={true}
-                name={<>Smarty Party<span className="text-base ml-1 capitalize">Quiz Application</span></>}
-                tech={["Kotlin", "Android Studio", "XML", "Firebase"]}
-                src="/projects/smarty-party.png"
-                description={`Developed an engaging quiz application with a focus on interactivity and real-time updates. Utilized Kotlin and Android Studio for development, designing the user interface in XML and integrating Firebase for backend functionalities. The app delivers a responsive and immersive user experience.`}
-                link="https://github.com/shkshreyas/Smarty-Party"
-                github="https://github.com/shkshreyas/Smarty-Party"
             />
-
-            <ProjectsCard
-                name={<>Portfolio App<span className="text-base ml-1 capitalize">Kotlin Android Studio</span></>}
-                tech={["Kotlin", "Android Studio", "XML", "Firebase"]}
-                src="/projects/portfolio-app.png"
-                description={`Developed a personal portfolio app using Kotlin and Android Studio, with a sleek UI designed in XML. Integrated Firebase for backend functionalities, including user authentication and data storage. The app showcases projects and skills with a user-friendly interface and smooth performance.`}
-                link="https://github.com/shkshreyas/PortfolioApk/raw/master/app/release/app-release.apk"
-                github="https://github.com/shkshreyas/PortfolioApk"
-            />
-
-
-            <Link href="https://github.com/shkshreyas">
-                <a target="_blank" className='text-xl'>To see more, head over to my <span className="inline-flex gap-2 items-center font-semibold italic cursor-pointer ease-in-out duration-300 hover:text-sky-800 hover:dark:text-sky-300">
-                    Github profile!
-                    <FaGithub />
-                </span></a>
-            </Link>
         </section>
-    )
+    );
+}
+
+function ProjectsCard({ name, tech, src, description, link, github, reverse }) {
+    const { isMobile } = useBreakpoints();
+    return (
+        <Parallax
+            speed={-5}
+            className={`group border-4 shadow-lg rounded-xl border-transparent hover:border-sky-500 hover:dark:border-slate-400 hover:bg-sky-50 dark:hover:bg-slate-800/80 duration-300 ease-in-out transform hover:scale-105 transition ${
+                reverse ? "md:flex-row-reverse" : "md:flex-row"
+            } md:space-x-5 md:space-y-0 flex flex-col space-y-5 md:space-y-0 mx-auto md:mx-5 p-5`}
+        >
+            <Image className={`w-full max-w-xl rounded-lg`} src={src} alt={name} width={500} height={300} />
+            <div className={`flex-1 flex flex-col justify-between`}>
+                <div>
+                    <h3 className="text-xl font-semibold">{name}</h3>
+                    <p className="text-base text-gray-600 dark:text-gray-300">{description}</p>
+                </div>
+                <div className="mt-3 flex gap-2">
+                    <a href={link} target="_blank" className="flex-1 flex items-center justify-center p-2 border-2 border-transparent rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700/40">
+                        <FaExternalLinkAlt className="mr-2" /> Live
+                    </a>
+                    <a href={github} target="_blank" className="flex-1 flex items-center justify-center p-2 border-2 border-transparent rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/40">
+                        <FaGithub className="mr-2" /> Code
+                    </a>
+                </div>
+            </div>
+        </Parallax>
+    );
 }
 
 export default Projects;
-
-function ProjectsCard(props) {
-    const { isXs, isSm, isMd } = useBreakpoints();
-    return (
-        <div className="text-start md:text-lg md:px-5 group space-y-6 md:space-y-8 md:p-10">
-            <div className='flex flex-col gap-5 md:gap-0 md:max-w-sm md:px-10 lg:max-w-md xl:max-w-xl group mx-auto md:flex-row items-center justify-center
-                border-2 border-sky-500/50 bg-gradient-to-tl text-base from-cyan-100/40 to-gray-100/50 dark:from-slate-900/50 dark:to-gray-900/50 ease-in-out dark:border-slate-500/50
-                transform-color ease-liner p-3 md:p-5 rounded-xl backdrop-blur
-                md:border-none md:bg-none'>
-                <div className={`flex-auto ${props.reverse ? "md:-translate-x-10" : "md:translate-x-10"} -z-10 w-auto md:p-0`}>
-                    <img src={props.src} alt={props.name}
-                        className="md:max-w-lg md:grayscale transition-colors transform duration-100 ease-in-out group-hover:grayscale-0"
-                    />
-                </div>
-                <div className={`min-w-fit order-first ${props.reverse ? "md:order-first md:translate-x-10" : "md:text-end md:order-2 md:-translate-x-10"}`}>
-                    <Parallax speed={isXs || isSm ? 0 : 10} className="space-y-2">
-                        <Link href={props.link ? props.link : props.github}>
-                            <a target="_blank" className="hover:text-sky-800 dark:hover:text-sky-300 cursor-pointer font-semibold text-2xl uppercase tracking-wider md:order-2">{props.name}</a>
-                        </Link>
-                        <div className='gap-3 md:tracking-wide inline-flex justify-start flex-wrap text-sm'>
-                            {props.tech.map((ele, i) => <a className='whitespace-nowrap dark:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]' key={i}>{ele}</a>)}
-                        </div>
-                        <div className={`${props.reverse ? "md:-mr-28 lg:-mr-26 xl:-mr-10" : "md:-ml-28 lg:-ml-26 xl:-ml-10"}
-                            md:border-2 border-sky-700/20 md:bg-gradient-to-tl md:text-sm from-cyan-200/40 to-gray-100/90 dark:from-slate-900/70 dark:to-gray-900/70 ease-in-out dark:border-slate-500/50
-                            transform ease-liner text-justify md:p-5 rounded-xl mx-auto md:backdrop-blur-md`}>
-                            {props.description}
-                        </div>
-                        <div className="inline-flex gap-3 pt-3 text-2xl">
-                            {props.github &&
-                                <Link href={props.github}>
-                                    <a target="_blank">
-                                        <FaGithub className="hover:text-sky-800 dark:hover:text-sky-300" />
-                                    </a>
-                                </Link>
-                            }
-                            {props.link &&
-                                <Link href={props.link}>
-                                    <a target="_blank">
-                                        <FaExternalLinkAlt className="hover:text-sky-800 dark:hover:text-sky-300" />
-                                    </a>
-                                </Link>
-                            }
-                        </div>
-                    </Parallax>
-                </div>
-            </div>
-        </div>
-    )
-}
