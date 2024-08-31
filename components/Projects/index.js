@@ -17,7 +17,7 @@ function Projects() {
                     My Works
                 </a>
                 <p className='mt-3 md:text-lg'>
-                    Here are some of the projects I've worked on recently
+                    Here are some of the projects I&apos;ve worked on recently
                 </p>
             </div>
 
@@ -69,10 +69,10 @@ function ProjectsCard({ name, tech, src, description, link, github, reverse }) {
                     <p className="text-base text-gray-600 dark:text-gray-300">{description}</p>
                 </div>
                 <div className="mt-3 flex gap-2">
-                    <a href={link} target="_blank" className="flex-1 flex items-center justify-center p-2 border-2 border-transparent rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700/40">
+                    <a href={link} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center p-2 border-2 border-transparent rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700/40">
                         <FaExternalLinkAlt className="mr-2" /> Live
                     </a>
-                    <a href={github} target="_blank" className="flex-1 flex items-center justify-center p-2 border-2 border-transparent rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/40">
+                    <a href={github} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center p-2 border-2 border-transparent rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/40">
                         <FaGithub className="mr-2" /> Code
                     </a>
                 </div>
