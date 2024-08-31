@@ -97,7 +97,7 @@ function About() {
                 </Slide>
             </div>
         </div>
-    );
+    )
 }
 
 export default About;
