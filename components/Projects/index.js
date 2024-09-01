@@ -4,7 +4,7 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { Parallax } from 'react-scroll-parallax';
 import useBreakpoints from '../../hooks/useBreakpoint';
 import Image from 'next/image';
-import Link from 'next/link'; // <-- Add this import
+import Link from 'next/link';
 
 function Projects() {
     return (
@@ -16,12 +16,12 @@ function Projects() {
                     md:after:h-1 text-center text-5xl font-bold link-glow">
                     My Works
                 </a>
+                {/* Corrected text to escape single quotes */}
                 <p className='mt-3 md:text-lg'>
-                    Here are some of the projects I've worked on recently
+                    Here are some of the projects I&apos;ve worked on recently
                 </p>
             </div>
 
-            {/* Project Cards with Parallax and faster animations */}
             <ProjectsCard
                 name={<>Aditi AI<span className="text-base ml-1 capitalize">AI Assistant App</span></>}
                 tech={["Kotlin", "Jetpack Compose", "Android Studio", "Gemini API"]}
