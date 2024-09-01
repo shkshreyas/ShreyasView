@@ -21,6 +21,7 @@ function Projects() {
                 </p>
             </div>
 
+            {/* Project Cards with Parallax and faster animations */}
             <ProjectsCard
                 name={<>Aditi AI<span className="text-base ml-1 capitalize">AI Assistant App</span></>}
                 tech={["Kotlin", "Jetpack Compose", "Android Studio", "Gemini API"]}
@@ -48,6 +49,7 @@ function Projects() {
                 link="https://www.amazon.com/dp/B0DDQJZ1JF/ref=apps_sf_sta"
                 github="https://www.amazon.com/dp/B0DDQJZ1JF/ref=apps_sf_sta"
             />
+
             <ProjectsCard
                 reverse={true}
                 name={<>Smarty Party<span className="text-base ml-1 capitalize">Quiz Application</span></>}
@@ -79,40 +81,41 @@ function Projects() {
 
 export default Projects;
 
-
 function ProjectsCard({ name, tech, src, description, link, github, reverse }) {
     return (
-        <Fade direction={reverse ? "right" : "left"} triggerOnce>
-            <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-5`}>
-                <div className="relative w-full md:w-1/2 h-64 md:h-96 transition-transform duration-300 ease-in-out transform hover:scale-105">
-                    <Image
-                        src={src}
-                        alt={name}
-                        width={500}  // Replace with actual width
-                        height={300} // Replace with actual height
-                        className="object-cover rounded-lg"
-                    />
-                </div>
-                <div className="md:w-1/2 space-y-2">
-                    <h3 className="text-3xl font-semibold">{name}</h3>
-                    <p className="text-gray-600 dark:text-gray-400">{description}</p>
-                    <div className="flex flex-wrap gap-2 mt-3">
-                        {tech.map((techItem, index) => (
-                            <span key={index} className="bg-gray-200 dark:bg-gray-700 rounded-lg px-2 py-1 text-sm">
-                                {techItem}
-                            </span>
-                        ))}
+        <Parallax className="custom-class" y={[-20, 20]}>
+            <Fade direction={reverse ? "right" : "left"} triggerOnce duration={500}>
+                <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-5`}>
+                    <div className="relative w-full md:w-1/2 h-64 md:h-96 transition-transform duration-300 ease-in-out transform hover:scale-105">
+                        <Image
+                            src={src}
+                            alt={name}
+                            width={500}  // Replace with actual width
+                            height={300} // Replace with actual height
+                            className="object-cover rounded-lg"
+                        />
                     </div>
-                    <div className="flex gap-4 mt-3">
-                        <a href={link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-500">
-                            View Project <FaExternalLinkAlt />
-                        </a>
-                        <a href={github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                            GitHub <FaGithub />
-                        </a>
+                    <div className="md:w-1/2 space-y-2">
+                        <h3 className="text-3xl font-semibold">{name}</h3>
+                        <p className="text-gray-600 dark:text-gray-400">{description}</p>
+                        <div className="flex flex-wrap gap-2 mt-3">
+                            {tech.map((techItem, index) => (
+                                <span key={index} className="bg-gray-200 dark:bg-gray-700 rounded-lg px-2 py-1 text-sm">
+                                    {techItem}
+                                </span>
+                            ))}
+                        </div>
+                        <div className="flex gap-4 mt-3">
+                            <a href={link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-500">
+                                View Project <FaExternalLinkAlt />
+                            </a>
+                            <a href={github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                                GitHub <FaGithub />
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </Fade>
+            </Fade>
+        </Parallax>
     );
 }
