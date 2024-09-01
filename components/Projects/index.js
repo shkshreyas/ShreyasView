@@ -1,10 +1,10 @@
 import React from 'react';
-import Link from 'next/link';
 import { Fade } from 'react-awesome-reveal';
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { Parallax } from 'react-scroll-parallax';
 import useBreakpoints from '../../hooks/useBreakpoint';
 import Image from 'next/image';
+import Link from 'next/link'; // <-- Add this import
 
 function Projects() {
     return (
@@ -17,7 +17,7 @@ function Projects() {
                     My Works
                 </a>
                 <p className='mt-3 md:text-lg'>
-                    Here are some of the projects I&apos;ve worked on recently
+                    Here are some of the projects I've worked on recently
                 </p>
             </div>
 
@@ -45,40 +45,74 @@ function Projects() {
                 tech={["React.js", "Tailwind CSS", "Firebase"]}
                 src="/projects/swaraj-quest.png"
                 description={`Developed a quiz app focused on Indian freedom fighters. Features include multiple quizzes, interactive elements, and a reward system with coins. Leveraged React.js and Firebase for a responsive and dynamic user experience.`}
-                link="https://github.com/shkshreyas/Swaraj_Quest"
-                github="https://github.com/shkshreyas/Swaraj_Quest"
-                reverse={true}
+                link="https://www.amazon.com/dp/B0DDQJZ1JF/ref=apps_sf_sta"
+                github="https://www.amazon.com/dp/B0DDQJZ1JF/ref=apps_sf_sta"
             />
-        </section>
-    );
-}
+            <ProjectsCard
+                reverse={true}
+                name={<>Smarty Party<span className="text-base ml-1 capitalize">Quiz Application</span></>}
+                tech={["Kotlin", "Android Studio", "XML", "Firebase"]}
+                src="/projects/smarty-party.png"
+                description={`Developed an engaging quiz application with a focus on interactivity and real-time updates. Utilized Kotlin and Android Studio for development, designing the user interface in XML and integrating Firebase for backend functionalities. The app delivers a responsive and immersive user experience.`}
+                link="https://github.com/shkshreyas/Smarty-Party"
+                github="https://github.com/shkshreyas/Smarty-Party"
+            />
 
-function ProjectsCard({ name, tech, src, description, link, github, reverse }) {
-    const { isMobile } = useBreakpoints();
-    return (
-        <Parallax
-            speed={-5}
-            className={`group border-4 shadow-lg rounded-xl border-transparent hover:border-sky-500 hover:dark:border-slate-400 hover:bg-sky-50 dark:hover:bg-slate-800/80 duration-300 ease-in-out transform hover:scale-105 transition ${
-                reverse ? "md:flex-row-reverse" : "md:flex-row"
-            } md:space-x-5 md:space-y-0 flex flex-col space-y-5 md:space-y-0 mx-auto md:mx-5 p-5`}
-        >
-            <Image className={`w-full max-w-xl rounded-lg`} src={src} alt={name} width={500} height={300} />
-            <div className={`flex-1 flex flex-col justify-between`}>
-                <div>
-                    <h3 className="text-xl font-semibold">{name}</h3>
-                    <p className="text-base text-gray-600 dark:text-gray-300">{description}</p>
-                </div>
-                <div className="mt-3 flex gap-2">
-                    <a href={link} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center p-2 border-2 border-transparent rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700/40">
-                        <FaExternalLinkAlt className="mr-2" /> Live
-                    </a>
-                    <a href={github} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center p-2 border-2 border-transparent rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/40">
-                        <FaGithub className="mr-2" /> Code
-                    </a>
-                </div>
-            </div>
-        </Parallax>
-    );
+            <ProjectsCard
+                name={<>Portfolio App<span className="text-base ml-1 capitalize">Kotlin Android Studio</span></>}
+                tech={["Kotlin", "Android Studio", "XML", "Firebase"]}
+                src="/projects/portfolio-app.png"
+                description={`Developed a personal portfolio app using Kotlin and Android Studio, with a sleek UI designed in XML. Integrated Firebase for backend functionalities, including user authentication and data storage. The app showcases projects and skills with a user-friendly interface and smooth performance.`}
+                link="https://github.com/shkshreyas/PortfolioApk/raw/master/app/release/app-release.apk"
+                github="https://github.com/shkshreyas/PortfolioApk"
+            />
+
+            <Link href="https://github.com/shkshreyas">
+                <a target="_blank" className='text-xl'>To see more, head over to my <span className="inline-flex gap-2 items-center font-semibold italic cursor-pointer ease-in-out duration-300 hover:text-sky-800 hover:dark:text-sky-300">
+                    Github profile!
+                    <FaGithub />
+                </span></a>
+            </Link>
+        </section>
+    )
 }
 
 export default Projects;
+
+
+function ProjectsCard({ name, tech, src, description, link, github, reverse }) {
+    return (
+        <Fade direction={reverse ? "right" : "left"} triggerOnce>
+            <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-5`}>
+                <div className="relative w-full md:w-1/2 h-64 md:h-96 transition-transform duration-300 ease-in-out transform hover:scale-105">
+                    <Image
+                        src={src}
+                        alt={name}
+                        width={500}  // Replace with actual width
+                        height={300} // Replace with actual height
+                        className="object-cover rounded-lg"
+                    />
+                </div>
+                <div className="md:w-1/2 space-y-2">
+                    <h3 className="text-3xl font-semibold">{name}</h3>
+                    <p className="text-gray-600 dark:text-gray-400">{description}</p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                        {tech.map((techItem, index) => (
+                            <span key={index} className="bg-gray-200 dark:bg-gray-700 rounded-lg px-2 py-1 text-sm">
+                                {techItem}
+                            </span>
+                        ))}
+                    </div>
+                    <div className="flex gap-4 mt-3">
+                        <a href={link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-500">
+                            View Project <FaExternalLinkAlt />
+                        </a>
+                        <a href={github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                            GitHub <FaGithub />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </Fade>
+    );
+}
