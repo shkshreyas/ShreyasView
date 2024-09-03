@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">shreyasviews</string>
+    <string name="title_activity_main">shreyasviews</string>
+    <string name="package_name">com.shk.views</string>
+    <string name="custom_url_scheme">com.shk.views</string>
+</resources>
